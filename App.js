@@ -30,13 +30,19 @@ const App = () => {
 };
 
 const TabNavigator = createBottomTabNavigator({
-  homeScreenStack:{
+  Home:{
     screen: createStackNavigator({
       HomeScreen: { screen: HomeScreen },
       DisplayCardScreen: { screen: DisplayCardScreen },
     })
   },
-  TaskScreen: TaskScreen,
+  Task: {
+    screen: createStackNavigator({
+      TaskScreen: { screen: TaskScreen },
+     
+    })
+  },
+
 });
 
 

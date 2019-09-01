@@ -8,8 +8,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "moment": "^2.24.0",
+    "moment-duration-format": "^2.3.2",
     "react": "16.8.6",
     "react-native": "0.60.5",
+    "react-native-countdown-component": "^2.5.2",
+    "react-native-date-picker": "^2.7.0",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.4.0",
     "react-native-paper": "^2.16.0",

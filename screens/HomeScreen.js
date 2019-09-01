@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, Image, Dimensions } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { Button,  Card, Title, Paragraph } from 'react-native-paper';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
@@ -7,6 +7,17 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import DisplayCardScreen from './DisplayCardScreen';
 
 class HomeScreen extends React.Component {
+    
+    static navigationOptions = {
+        headerTitle:(
+            <View style={{flex: 1, justifyContent:'center', alignItems: 'center'}}>
+                <Image
+                    style={{width: 200, height: 30}}
+                    source={require('../resources/logo.png')}
+                />
+            </View>
+        ),
+    }
 
     constructor(props){
         super(props)
@@ -18,6 +29,7 @@ class HomeScreen extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
+        console.log(new Date());
         console.log("homescreen");
         console.log(nextProps);
         console.log(prevState);
@@ -43,8 +55,8 @@ class HomeScreen extends React.Component {
 
         if(this.state.allTasks.length == 0){
             return(
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>You have no task yet. Click on the Task Screen navigation to add a task</Text>
+                <View style={{ flex: 1,justifyContent: 'center', alignItems: 'center' }}>
+                    <Text>You have no task yet! Click on Task to add a task</Text>
                 </View>
             )
         }else{
