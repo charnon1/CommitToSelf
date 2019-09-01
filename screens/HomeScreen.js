@@ -5,6 +5,7 @@ import { Button,  Card, Title, Paragraph } from 'react-native-paper';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import DisplayCardScreen from './DisplayCardScreen';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class HomeScreen extends React.Component {
     
@@ -61,19 +62,18 @@ class HomeScreen extends React.Component {
             )
         }else{
             return(
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <FlatList 
-                        data={this.state.allTasks}
-                        renderItem={
-                            ({item}) =>
-                            <Card style={{height:100, width: 300, borderWidth:1}} onPress={()=> this.navigateToDisplayCardScreen(item)}>
-                                <Card.Title title={item.title} subTitle="subtitle" />
-
-                            </Card>
-                        }
-                        keyExtractor={(item, index) => index.toString()}
-                    />
-                </View>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <FlatList 
+                            data={this.state.allTasks}
+                            renderItem={
+                                ({item}) =>
+                                <Card style={{height:100, width: 300, borderWidth:1}} onPress={()=> this.navigateToDisplayCardScreen(item)}>
+                                    <Card.Title title={item.title} subTitle="subtitle" />
+                                </Card>
+                            }
+                            keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
             )
         }
     }
