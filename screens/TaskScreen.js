@@ -3,8 +3,8 @@ import { Text, View,TextInput, TouchableOpacity, StyleSheet } from 'react-native
 import { withNavigation } from 'react-navigation';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { Icon } from 'react-native-elements';
+import FloatingLabel from 'react-native-floating-labels';
 
 import HomeScreen from './HomeScreen';
 import Task from  '../objects/Task';
@@ -16,10 +16,8 @@ class TaskScreen extends React.Component {
         headerTitle:(
             <View style={{paddingLeft: 20, justifyContent:'center', alignItems: 'center'}}>
                 <Text>Adding Task...</Text>
-               
+                
             </View>
-            
-            
         ),
     }
 
@@ -34,106 +32,79 @@ class TaskScreen extends React.Component {
         }
     }
 
-    processTaskSubmission(newTask){       
+    processTaskSubmission(){ 
         console.log("Process task submission");
-
+      
+        let newTask = new Task(this.state.title, this.state.description, this.state.dueDate, this.state.amount)
         newTask.submittedDate = new Date();
+        newTask.amount = parseInt(this.state.amount, 10);
+        console.log(newTask.amount);
         this.props.navigation.navigate('HomeScreen',{newTask: newTask});
     }
 
     render(){
-
         return (
-            <ScrollView>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-                    {/* <Text>Title: </Text>
-                    <TextInput
-                        style={{height: 40}}
-                        placeholder="e.g. do homework"
-                        onChangeText={(title) => this.setState({title})}
-                        value={this.state.text}
-                    /> */}
-
-                    <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <View style={{flexDirection: 'row', alignItems:'center'}}>
-                            <Text>Title: </Text>
-                            <TextInput
-                                style={{height: 40}}
-                                placeholder="e.g. do homework"
-                                onChangeText={(title) => this.setState({title})}
-                                value={this.state.text}
-                            />
-                        </View>
-
-                    </View>
-
-                    {/* <Text>Description: </Text>
-                    <TextInput
-                        style={{height: 40}}
-                        placeholder="e.g. revise chemistry"
-                        onChangeText={(description) => this.setState({description})}
-                        value={this.state.description}
-                    /> */}
-
-                    <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <View style={{flexDirection: 'row', alignItems:'center'}}>
-                            <Text>Description: </Text>
-                            <TextInput
-                                style={{height: 40}}
-                                placeholder="e.g. revise chemistry"
-                                onChangeText={(description) => this.setState({description})}
-                                value={this.state.description}
-                            />
-                        </View>
-
-                    </View>
-
-                    {/* <Text>To be done by: </Text>
-                    <DatePicker 
-                        date={this.state.dueDate}    
-                        onDateChange={dueDate => this.setState({dueDate})}
-                    /> */}
-
-                    <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <View style={{flexDirection: 'row', alignItems:'center'}}>
-                            <Text>To be done by: </Text>
-                            <DatePicker 
-                                date={this.state.dueDate}    
-                                onDateChange={dueDate => this.setState({dueDate})}
-                            />
-                        </View>
-
-                    </View>
-
-                    {/* <Text>Pledging amount: </Text> */}
-                    {/* <TextInput
-                        style={{height: 40}}
-                        placeholder="How much do you value this task?"
-                        onChangeText={(amount) => this.setState({amount})}
-                        value={this.state.amount}
-                    /> */}
-
-                    
-                    <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <View style={{flexDirection: 'row', alignItems:'center'}}>
-                            <Text>Pledging amount: </Text>
-                            <TextInput
-                                style={{height: 40}}
-                                placeholder="How much do you value this task?"
-                                onChangeText={(amount) => this.setState({amount})}
-                                value={this.state.amount}
-                            />
-                        </View>
-                    </View>
-
-                    <TouchableOpacity onPress={() =>
-                            this.processTaskSubmission(new Task(this.state.title, this.state.description, this.state.dueDate, this.state.amount))}>
-                        <Text>Submit Task</Text>   
-                    </TouchableOpacity>
-
+                <FloatingLabel 
+                    labelStyle={styles.labelInput}
+                    inputStyle={styles.input}
+                    style={styles.formInput}
+                >Title: </FloatingLabel>
+                     
+                {/* <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flexDirection: 'row',flex:1,  alignItems:'center'}}>
+                        <Text>Title: </Text>
+                        <TextInput
+                            style={{height: 40}}
+                            placeholder="e.g. do homework"
+                            onChangeText={(title) => this.setState({title})}
+                            value={this.state.text}
+                        />
+                     </View>
                 </View>
-            </ScrollView>
+
+                <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flexDirection: 'row',flex:1, alignItems:'center'}}>
+                        <Text>Description: </Text>
+                        <TextInput
+                            style={{height: 40}}
+                            placeholder="e.g. revise chemistry"
+                            onChangeText={(description) => this.setState({description})}
+                            value={this.state.description}
+                        />
+                    </View>
+                </View> 
+
+                {/* <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flexDirection: 'row',flex:1, alignItems:'center'}}>
+                        <Text>To be done by: </Text>
+                        <DatePicker 
+                            date={this.state.dueDate}    
+                            onDateChange={dueDate => this.setState({dueDate})}
+                        />
+                    </View>
+                </View> */}
+
+                {/* <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flexDirection: 'row',flex:1, alignItems:'center'}}>
+                        <Text>Pledging amount: </Text>
+                        <TextInput
+                            style={{height: 40}}
+                            keyboardType='numeric'
+                            placeholder="How much do you value this task?"
+                            onChangeText={(amount) => this.setState({amount})}
+                            value={this.state.amount}
+                        />
+                    </View>
+                </View>
+
+                <TouchableOpacity onPress={() =>
+                        this.processTaskSubmission()}>
+                    <Text>Submit Task</Text>   
+                </TouchableOpacity>   */}
+                     
+            </View>
         );
     }
 }
@@ -145,6 +116,17 @@ const styles = StyleSheet.create({
         width: 500,
         alignSelf: 'stretch',
         textAlign: 'center',
+      },
+      labelInput:{
+          color: '#673AB7',
+      },
+      input:{
+        borderWidth: 0,
+      },
+      formInput:{
+        borderBottomWidth: 1.5,
+        marginLeft: 20,
+        borderColor: '#333'
       },
 })
 

@@ -33,7 +33,6 @@ class DisplayCardScreen extends React.Component {
                 timeTillDueDate: diffInSeconds,
             }
        }
-
        return null;
     }
 

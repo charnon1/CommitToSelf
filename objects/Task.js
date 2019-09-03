@@ -3,7 +3,7 @@ export default class Task{
     title: string;
     description: string;
     dueDate: Date;
-    amount: string;
+    amount: number;
     submittedDate: Date; 
 
     constructor(title, description, dueDate, amount){
