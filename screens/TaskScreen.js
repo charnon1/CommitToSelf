@@ -46,88 +46,43 @@ class TaskScreen extends React.Component {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-                <FloatingLabel 
-                    labelStyle={styles.labelInput}
-                    inputStyle={styles.input}
-                    style={styles.formInput}
-                >Title: </FloatingLabel>
-                     
-                {/* <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <View style={{flexDirection: 'row',flex:1,  alignItems:'center'}}>
-                        <Text>Title: </Text>
-                        <TextInput
-                            style={{height: 40}}
-                            placeholder="e.g. do homework"
-                            onChangeText={(title) => this.setState({title})}
-                            value={this.state.text}
-                        />
-                     </View>
-                </View>
-
-                <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <View style={{flexDirection: 'row',flex:1, alignItems:'center'}}>
-                        <Text>Description: </Text>
-                        <TextInput
-                            style={{height: 40}}
-                            placeholder="e.g. revise chemistry"
-                            onChangeText={(description) => this.setState({description})}
-                            value={this.state.description}
-                        />
+                <View style={{flexDirection: 'column', flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={{fontSize: 12, marginLeft: 10}}>Title</Text>
+                        <TextInput style={{width: 200}} placeholder="e.g. workout"/>
                     </View>
-                </View> 
 
-                {/* <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <View style={{flexDirection: 'row',flex:1, alignItems:'center'}}>
-                        <Text>To be done by: </Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={{fontSize: 12}}>Description</Text>
+                        <TextInput style={{width: 200}} placeholder="e.g. cardio for 20 minutes then free weights for 20 minutes"/>
+                    </View>
+
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={{fontSize: 12}}>To be done by: </Text>
                         <DatePicker 
                             date={this.state.dueDate}    
                             onDateChange={dueDate => this.setState({dueDate})}
                         />
                     </View>
-                </View> */}
 
-                {/* <View style={{flexDirection: 'column', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <View style={{flexDirection: 'row',flex:1, alignItems:'center'}}>
-                        <Text>Pledging amount: </Text>
-                        <TextInput
-                            style={{height: 40}}
-                            keyboardType='numeric'
-                            placeholder="How much do you value this task?"
-                            onChangeText={(amount) => this.setState({amount})}
-                            value={this.state.amount}
-                        />
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={{fontSize: 12}}>Pledging amount: </Text>
+                            <TextInput
+                                style={{height: 40}}
+                                keyboardType='numeric'
+                                placeholder="How much do you value this task?"
+                                onChangeText={(amount) => this.setState({amount})}
+                                value={this.state.amount}
+                            />
                     </View>
                 </View>
-
-                <TouchableOpacity onPress={() =>
-                        this.processTaskSubmission()}>
-                    <Text>Submit Task</Text>   
-                </TouchableOpacity>   */}
                      
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    toolbar: {
-        backgroundColor: '#2196F3',
-        height: 50,
-        width: 500,
-        alignSelf: 'stretch',
-        textAlign: 'center',
-      },
-      labelInput:{
-          color: '#673AB7',
-      },
-      input:{
-        borderWidth: 0,
-      },
-      formInput:{
-        borderBottomWidth: 1.5,
-        marginLeft: 20,
-        borderColor: '#333'
-      },
+const styles = StyleSheet.create({ 
 })
 
 export default TaskScreen;
