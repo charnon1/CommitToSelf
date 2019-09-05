@@ -4,8 +4,9 @@ import { withNavigation } from 'react-navigation';
 import { Button,  Card, Title, Paragraph } from 'react-native-paper';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+
 import DisplayCardScreen from './DisplayCardScreen';
-import { ScrollView } from 'react-native-gesture-handler';
+
 
 class HomeScreen extends React.Component {
     
