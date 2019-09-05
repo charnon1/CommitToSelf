@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View,TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View,TextInput, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 
@@ -10,16 +10,21 @@ import Task from  '../objects/Task';
 
 class TaskScreen extends React.Component {
 
-    static navigationOptions = {
-        headerTitle:(
-            <View style={{flex:1, paddingLeft: 20}}>
-                <Text style={{}}>Adding Task...</Text>
-                <View style={{alignSelf:'flex-end', margin: 5}}>
-                    <Icon name='check' size={30}/>
+    static navigationOptions = ({ navigation }) => {
+        return{
+            headerTitle: (
+                <View style={{flex: 1}}>
+                    <Text style={{textAlign: 'left', marginLeft: 20}}>Adding Task...</Text>
+                    {/* <View style={{position:'absolute', right: 20 }}>
+                    <Icon name='check' size={30} onPress={() => console.log('fuk u')}/>
+                    </View> */}
                 </View>
-            </View>
-        ),
-    }
+            ),
+            headerRight:(
+                <Button title="+" onPress={console.log("hello")} />
+            ),
+        };
+    };
 
     constructor(props){
         super(props)
@@ -32,7 +37,7 @@ class TaskScreen extends React.Component {
         }
     }
 
-    processTaskSubmission(){ 
+    processTaskSubmission = () => { 
         console.log("Process task submission");
       
         let newTask = new Task(this.state.title, this.state.description, this.state.dueDate, this.state.amount)
