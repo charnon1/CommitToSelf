@@ -42,31 +42,45 @@ class TaskScreen extends React.Component {
         this.props.navigation.navigate('HomeScreen',{newTask: newTask});
     }
 
+    renderDatePicker(){
+        console.log("rendering date picker...");
+        return(
+            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+                <DatePicker 
+                    date={this.state.dueDate}    
+                    onDateChange={dueDate => this.setState({dueDate})}
+                />
+            </View>
+        );
+    }
+
     render(){
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-                <View style={{flexDirection: 'column', flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{fontSize: 12, marginLeft: 10}}>Title</Text>
+                <View style={{flexDirection: 'column', flex: 1, backgroundColor: 'white', justifyContent:'center'}}>
+
+                    <View style={{flexDirection: 'row', alignItems:'center',margin: 20}}>
+                        <Text style={{fontSize: 12, textAlign:'left'}}>Title</Text>
                         <TextInput style={{width: 200}} placeholder="e.g. workout"/>
                     </View>
 
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{fontSize: 12}}>Description</Text>
-                        <TextInput style={{width: 200}} placeholder="e.g. cardio for 20 minutes then free weights for 20 minutes"/>
+                    <View style={{flexDirection: 'row', alignItems:'center', margin: 20}}>
+                        <Text style={{fontSize: 12, textAlign:'left'}}>Description</Text>
+                        <TextInput style={{width: 200}} placeholder="e.g. cardio for 30 minutes"/>
                     </View>
 
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{fontSize: 12}}>To be done by: </Text>
-                        <DatePicker 
+                    <View style={{flexDirection: 'row', alignItems:'center', margin: 20}}>
+                        <Text style={{fontSize: 12, textAlign:'left'}}>To be done by: </Text>
+                        {/* <DatePicker 
                             date={this.state.dueDate}    
                             onDateChange={dueDate => this.setState({dueDate})}
-                        />
+                        /> */}
+                        <TouchableOpacity onPress={()=>this.renderDatePicker()}><Text>Date picker</Text></TouchableOpacity>
                     </View>
 
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{fontSize: 12}}>Pledging amount: </Text>
+                    <View style={{flexDirection: 'row', alignItems:'center', margin: 20}}>
+                        <Text style={{fontSize: 12 }}>Pledging amount: </Text>
                             <TextInput
                                 style={{height: 40}}
                                 keyboardType='numeric'
