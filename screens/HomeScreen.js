@@ -67,8 +67,17 @@ class HomeScreen extends React.Component {
                             data={this.state.allTasks}
                             renderItem={
                                 ({item}) =>
-                                <Card style={{height:100, width: 300, borderWidth:1}} onPress={()=> this.navigateToDisplayCardScreen(item)}>
-                                    <Card.Title title={item.title} subTitle="subtitle" />
+                                <Card style={{height:100, width: 300, borderWidth:1, margin: 20, padding: 5}} onPress={()=> this.navigateToDisplayCardScreen(item)}>
+                                    <Card.Title title={item.title} style={{fontWeight: 'bold'}} />
+                                    <Card.Content>
+                                        <Paragraph>{item.amount}</Paragraph>
+                                        {/* <Paragraph>{item.dueDate}</Paragraph> */}
+                                    </Card.Content>
+                                    <Card.Actions>
+                                        <Button>Remove</Button>
+                                        <Button>View</Button>
+                                    </Card.Actions>
+
                                 </Card>
                             }
                             keyExtractor={(item, index) => index.toString()}

@@ -68,6 +68,14 @@ class TaskScreen extends React.Component {
         this.setState({title: title});
         this.props.navigation.setParams({title: title});
     }
+    processDescription(description){
+        this.setState({description: description});
+        this.props.navigation.setParams({description: description});
+    }
+    processAmount(amount){
+        this.setState({amount: amount});
+        this.props.navigation.setParams({amount: amount});
+    }
 
     render(){
         return (
@@ -84,7 +92,7 @@ class TaskScreen extends React.Component {
                     <View style={{flexDirection: 'row', alignItems:'center', margin: 20}}>
                         <Text style={{fontSize: 12, textAlign:'left'}}>Description</Text>
                         <TextInput style={{width: 200}} placeholder="e.g. cardio for 30 minutes" 
-                            onChangeText={description => this.props.navigation.setParams({description: description})} 
+                            onChangeText={ (description) => this.processDescription(description) } 
                         />
                     </View>
 
@@ -104,7 +112,7 @@ class TaskScreen extends React.Component {
                                 style={{height: 40}}
                                 keyboardType='numeric'
                                 placeholder="How much do you value this task?"
-                                onChangeText={(amount) => this.props.navigation.setParams({amount: amount})}
+                                onChangeText={(amount) => this.processAmount(amount) }
                                 value={this.state.amount}
                             />
                     </View>
