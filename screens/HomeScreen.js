@@ -31,15 +31,14 @@ class HomeScreen extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
-        console.log(new Date());
         console.log("homescreen");
-        console.log(nextProps);
-        console.log(prevState);
-        console.log("tasK: " + nextProps.navigation.getParam("newTask"));
+       // console.log(nextProps);
+       // console.log(prevState);
+        // console.log("tasK: " + nextProps.navigation.getParam("newTask"));
         if(nextProps.navigation.getParam("newTask") != undefined){
-            console.log("size of allTasks: " + prevState.allTasks.length);
+            //console.log("size of allTasks: " + prevState.allTasks.length);
             let newTask = nextProps.navigation.getParam("newTask");
-            console.log("task object: " + newTask.title);
+            //console.log("task object: " + newTask.title);
             return{
                 allTasks: [...prevState.allTasks, newTask],
             }

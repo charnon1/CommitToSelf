@@ -11,6 +11,7 @@ import Task from  '../objects/Task';
 class TaskScreen extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
+      
         return{
             headerTitle: (
                 <View style={{flex: 1}}>
@@ -21,11 +22,15 @@ class TaskScreen extends React.Component {
                 </View>
             ),
             headerRight:(
-                <Button title="+" onPress={console.log("hello")} />
+                <Button title="+" onPress={() => navigation.navigate("HomeScreen",{
+                    newTask: new Task( navigation.getParam('title'), navigation.getParam('description'), new Date(), navigation.getParam('amount') ), 
+                    })}
+                />
             ),
         };
     };
 
+ 
     constructor(props){
         super(props)
         this.state = {
@@ -59,6 +64,11 @@ class TaskScreen extends React.Component {
         );
     }
 
+    processTitle(title){
+        this.setState({title: title});
+        this.props.navigation.setParams({title: title});
+    }
+
     render(){
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -66,12 +76,16 @@ class TaskScreen extends React.Component {
 
                     <View style={{flexDirection: 'row', alignItems:'center',margin: 20}}>
                         <Text style={{fontSize: 12, textAlign:'left'}}>Title</Text>
-                        <TextInput style={{width: 200}} placeholder="e.g. workout"/>
+                        <TextInput style={{width: 200}} placeholder="e.g. workout" 
+                            onChangeText={ (title) => this.processTitle(title) } 
+                        />
                     </View>
 
                     <View style={{flexDirection: 'row', alignItems:'center', margin: 20}}>
                         <Text style={{fontSize: 12, textAlign:'left'}}>Description</Text>
-                        <TextInput style={{width: 200}} placeholder="e.g. cardio for 30 minutes"/>
+                        <TextInput style={{width: 200}} placeholder="e.g. cardio for 30 minutes" 
+                            onChangeText={description => this.props.navigation.setParams({description: description})} 
+                        />
                     </View>
 
                     <View style={{flexDirection: 'row', alignItems:'center', margin: 20}}>
@@ -90,7 +104,7 @@ class TaskScreen extends React.Component {
                                 style={{height: 40}}
                                 keyboardType='numeric'
                                 placeholder="How much do you value this task?"
-                                onChangeText={(amount) => this.setState({amount})}
+                                onChangeText={(amount) => this.props.navigation.setParams({amount: amount})}
                                 value={this.state.amount}
                             />
                     </View>
