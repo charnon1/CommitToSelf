@@ -16,16 +16,17 @@ class TaskScreen extends React.Component {
             headerTitle: (
                 <View style={{flex: 1}}>
                     <Text style={{textAlign: 'left', marginLeft: 20}}>Adding Task...</Text>
-                    {/* <View style={{position:'absolute', right: 20 }}>
-                    <Icon name='check' size={30} onPress={() => console.log('fuk u')}/>
-                    </View> */}
+                 
                 </View>
             ),
             headerRight:(
-                <Button title="+" onPress={() => navigation.navigate("HomeScreen",{
-                    newTask: new Task( navigation.getParam('title'), navigation.getParam('description'), new Date(), navigation.getParam('amount') ), 
-                    })}
-                />
+                <View style={{right: 20 }}>
+                    <TouchableOpacity onPress={() =>navigation.navigate("HomeScreen",{
+                        newTask: new Task( navigation.getParam('title'), navigation.getParam('description'), new Date(), navigation.getParam('amount') ), 
+                        })} >
+                        <Icon name='check' size={30} />
+                    </TouchableOpacity>
+                </View>
             ),
         };
     };

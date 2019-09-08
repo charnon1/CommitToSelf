@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Button, StyleSheet } from 'react-native';
 import moment from 'moment';
 import 'moment-duration-format';
 import CountDown from 'react-native-countdown-component';
@@ -41,19 +41,50 @@ class DisplayCardScreen extends React.Component {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-                <CountDown 
-                    until={this.state.timeTillDueDate}
-                    onFinish={()=>alert('Task is due!')}
-                    onPress={()=> alert('hello')}
-                    size={20}
-                />
-                <Text>Title: {this.state.task.title}</Text>
-                <Text>Description: {this.state.task.description}</Text>
-                {/* <Text>Due Date: {this.state.task.dueDate}</Text> */}
-                <Text>Due Date: {this.state.dueDateString}</Text>
-                <Text>Submitted Date: {this.state.submittedDateString}</Text>
-                <Text>Amount Pledge: {this.state.task.amount}</Text>
-              
+                <View style={{flexDirection: 'column', flex: 1, backgroundColor: 'white', justifyContent:'center'}}>
+
+                    <View style={{flexDirection: 'row', alignItems:'center',margin: 20}}>
+                        <Text style={{fontSize: 12, textAlign:'left'}}>Due In: </Text>
+                        <CountDown 
+                            until={this.state.timeTillDueDate}
+                            onFinish={()=>alert('Task is due!')}
+                            onPress={()=> alert('hello')}
+                            size={20}
+                        />
+                    </View>
+
+                    <View style={{marginVertical:8, borderBottomColor: '#000000', borderBottomWidth: StyleSheet.hairlineWidth}}></View>
+
+                    <View style={{flexDirection: 'row', alignItems:'center',margin: 20}}>
+                        <Text style={{fontSize: 12, textAlign:'left'}}>Title: </Text>
+                        <Text>{this.state.task.title}</Text>
+                    </View>
+
+                    
+                    <View style={{flexDirection: 'row', alignItems:'center',margin: 20}}>
+                        <Text style={{fontSize: 12, textAlign:'left'}}>Description: </Text>
+                        <Text>{this.state.task.description}</Text>
+                    </View>
+
+    
+                    <View style={{flexDirection: 'row', alignItems:'center',margin: 20}}>
+                        <Text style={{fontSize: 12, textAlign:'left'}}>Due Date: </Text>
+                        <Text>{this.state.task.dueDateString}</Text>
+                    </View>
+
+                    
+                    <View style={{flexDirection: 'row', alignItems:'center',margin: 20}}>
+                        <Text style={{fontSize: 12, textAlign:'left'}}>Amount Pledge ($): </Text>
+                        <Text>{this.state.task.amount}</Text>
+                    </View>
+
+                    <View style={{flexDirection: 'row', alignItems:'center', margin:20, justifyContent:'space-between'}}>
+                        <Button title="Completed" onPress={() => console.log("task completed")} />
+                        <Button title="Forfeit Task" onPress={() => console.log("forfeiting task")} />
+
+                    </View>
+
+                </View>
                 
             </View>
         );
