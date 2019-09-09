@@ -16,13 +16,18 @@ class EntryScreen extends React.Component {
     static getDerivedStateFromProps(nextProps, prevState){
         setTimeout(()=>{
             nextProps.navigation.navigate("HomeScreen");
-        }, 5000);
+        }, 2000);
         return null;
     }
 
     render() {
         return(
-           <Text>hello</Text>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Image
+                    style={{}}
+                    source={require('../resources/entryLogo.png')}
+                />
+            </View>
         )
       
     }
