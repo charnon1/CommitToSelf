@@ -3,7 +3,7 @@ import { Text, View, FlatList, Image, Dimensions } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { Button,  Card, Title, Paragraph } from 'react-native-paper';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-
+import Toast from 'react-native-simple-toast';
 
 import DisplayCardScreen from './DisplayCardScreen';
 
@@ -31,20 +31,31 @@ class HomeScreen extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
+        Toast.show('Welcome to Commit To Self!');
         console.log("homescreen");
-       // console.log(nextProps);
-       // console.log(prevState);
-        // console.log("tasK: " + nextProps.navigation.getParam("newTask"));
+      
+        //passses when there is a new task from task screen
         if(nextProps.navigation.getParam("newTask") != undefined){
-            //console.log("size of allTasks: " + prevState.allTasks.length);
             let newTask = nextProps.navigation.getParam("newTask");
-            //console.log("task object: " + newTask.title);
-            return{
-                allTasks: [...prevState.allTasks, newTask],
-            }
-        }else{
-            return null;
+                return{
+                    newTask: newTask,
+                    allTasks: [...prevState.allTasks, newTask],
+    
+                }
+                
         }
+            
+        //passes when there is a task to be removed from display screen
+        if(nextProps.navigation.getParam("taskToRemove") != undefined ){
+            Toast.show("Task removed successfully")
+            return{
+                allTasks: prevState.allTasks.filter(function(item){
+                    return item != nextProps.navigation.getParam("taskToRemove")
+                }),
+            }
+        }
+
+        return null;
     }
 
     navigateToDisplayCardScreen(item){

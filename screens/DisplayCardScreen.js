@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, Button, StyleSheet, Alert } from 'react-native';
 import moment from 'moment';
 import 'moment-duration-format';
 import CountDown from 'react-native-countdown-component';
@@ -36,6 +36,26 @@ class DisplayCardScreen extends React.Component {
        return null;
     }
 
+    processCompletedTask(){
+        console.log("Task complete!");
+        Alert.alert(
+            'Did you complete the task?',
+            'You\'re only cheating yourself ;)',
+            [
+                {text: 'No', onPress: () => console.log("no pressed") },
+                {text: 'Yes', onPress: () => this.props.navigation.navigate('HomeScreen', { taskToRemove: this.state.task, newTask: undefined } )},
+            ],
+
+        );
+           
+        
+        
+    }
+
+    processForfeitTask(){
+        console.log("Forfeiting task");
+    }
+
     render(){
 
         return (
@@ -47,7 +67,7 @@ class DisplayCardScreen extends React.Component {
                         <Text style={{fontSize: 12, textAlign:'left'}}>Due In: </Text>
                         <CountDown 
                             until={this.state.timeTillDueDate}
-                            onFinish={()=>alert('Task is due!')}
+                            // onFinish={()=>alert('Task is due!')}
                             onPress={()=> alert('hello')}
                             size={20}
                         />
@@ -79,8 +99,8 @@ class DisplayCardScreen extends React.Component {
                     </View>
 
                     <View style={{flexDirection: 'row', alignItems:'center', margin:20, justifyContent:'space-between'}}>
-                        <Button title="Completed" onPress={() => console.log("task completed")} />
-                        <Button title="Forfeit Task" onPress={() => console.log("forfeiting task")} />
+                        <Button title="Completed" onPress={() => this.processCompletedTask() } />
+                        <Button title="Forfeit Task" onPress={() =>this.processForfeitTask() } />
 
                     </View>
 

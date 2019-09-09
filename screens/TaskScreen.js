@@ -4,6 +4,7 @@ import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Modal from 'react-native-modal';
 
 import HomeScreen from './HomeScreen';
 import Task from  '../objects/Task';
@@ -21,8 +22,8 @@ class TaskScreen extends React.Component {
                 
                     <TouchableOpacity onPress={() =>navigation.navigate("HomeScreen",{
                         newTask: new Task( navigation.getParam('title'), navigation.getParam('description'), new Date(), navigation.getParam('amount') )})} >
-                        {/* <Icon name='check' size={30} style={{borderWidth: 1}}  /> */}
-                        <Text>+</Text>
+                        <Icon name='check' size={30} />
+                        {/* <Text>+</Text> */}
                     </TouchableOpacity>
                 
             ),
@@ -47,18 +48,29 @@ class TaskScreen extends React.Component {
         newTask.submittedDate = new Date();
         newTask.amount = parseInt(this.state.amount, 10);
         console.log(newTask.amount);
+        this.setState({
+            title: '',
+            description: '',
+            dueDate: new Date(),
+            amount: '',
+            submittedDate: new Date(),
+        });
+        // this.props.navigation.setParams({newTask: undefined});
         this.props.navigation.navigate('HomeScreen',{newTask: newTask});
     }
 
     renderDatePicker(){
         console.log("rendering date picker...");
         return(
-            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
-                <DatePicker 
-                    date={this.state.dueDate}    
-                    onDateChange={dueDate => this.setState({dueDate})}
-                />
-            </View>
+            // <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+            //     <DatePicker 
+            //         date={this.state.dueDate}    
+            //         onDateChange={dueDate => this.setState({dueDate})}
+            //     />
+            // </View>
+            <Modal>
+                <Text> I am the modal content!</Text>
+            </Modal>
         );
     }
 
@@ -84,6 +96,7 @@ class TaskScreen extends React.Component {
                         <Text style={{fontSize: 12, textAlign:'left'}}>Title</Text>
                         <TextInput style={{width: 200}} placeholder="e.g. workout" 
                             onChangeText={ (title) => this.processTitle(title) } 
+                            value={this.state.title}
                         />
                     </View>
 
@@ -91,6 +104,8 @@ class TaskScreen extends React.Component {
                         <Text style={{fontSize: 12, textAlign:'left'}}>Description</Text>
                         <TextInput style={{width: 200}} placeholder="e.g. cardio for 30 minutes" 
                             onChangeText={ (description) => this.processDescription(description) } 
+                            value={this.state.description}
+
                         />
                     </View>
 
@@ -101,6 +116,7 @@ class TaskScreen extends React.Component {
                             onDateChange={dueDate => this.setState({dueDate})}
                             
                         /> */}
+
                         <TouchableOpacity onPress={()=>this.renderDatePicker()}><Text>Date picker</Text></TouchableOpacity>
                     </View>
 
