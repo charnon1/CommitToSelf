@@ -11,27 +11,24 @@ import Task from  '../objects/Task';
 class TaskScreen extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
-      
         return{
             headerTitle: (
                 <View style={{flex: 1}}>
                     <Text style={{textAlign: 'left', marginLeft: 20}}>Adding Task...</Text>
-                 
                 </View>
             ),
             headerRight:(
-                <View style={{right: 20 }}>
+                
                     <TouchableOpacity onPress={() =>navigation.navigate("HomeScreen",{
-                        newTask: new Task( navigation.getParam('title'), navigation.getParam('description'), new Date(), navigation.getParam('amount') ), 
-                        })} >
-                        <Icon name='check' size={30} />
+                        newTask: new Task( navigation.getParam('title'), navigation.getParam('description'), new Date(), navigation.getParam('amount') )})} >
+                        {/* <Icon name='check' size={30} style={{borderWidth: 1}}  /> */}
+                        <Text>+</Text>
                     </TouchableOpacity>
-                </View>
+                
             ),
         };
     };
 
- 
     constructor(props){
         super(props)
         this.state = {

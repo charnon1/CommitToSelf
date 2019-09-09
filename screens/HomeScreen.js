@@ -73,10 +73,7 @@ class HomeScreen extends React.Component {
                                         <Paragraph>{item.amount}</Paragraph>
                                         {/* <Paragraph>{item.dueDate}</Paragraph> */}
                                     </Card.Content>
-                                    <Card.Actions style={{borderWidth: 1}}>
-                                        <Button>Remove</Button>
-                                        <Button>View</Button>
-                                    </Card.Actions>
+                                   
 
                                 </Card>
                             }
