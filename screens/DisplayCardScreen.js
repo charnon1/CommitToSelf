@@ -47,13 +47,19 @@ class DisplayCardScreen extends React.Component {
             ],
 
         );
-           
-        
-        
     }
 
     processForfeitTask(){
         console.log("Forfeiting task");
+        Alert.alert(
+            'Do you want to forfeit this task?',
+            'You will lose all the money you pledge if you proceed',
+            [
+                {text: 'No', onPress: () => console.log("no pressed") },
+                {text: 'Yes', onPress: () => this.props.navigation.navigate('HomeScreen', { taskToRemove: this.state.task, newTask: undefined } )},
+            ],
+
+        );
     }
 
     render(){
@@ -89,7 +95,7 @@ class DisplayCardScreen extends React.Component {
     
                     <View style={{flexDirection: 'row', alignItems:'center',margin: 20}}>
                         <Text style={{fontSize: 12, textAlign:'left'}}>Due Date: </Text>
-                        <Text>{this.state.task.dueDateString}</Text>
+                        <Text>{this.state.dueDateString}</Text>
                     </View>
 
                     

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View,TextInput, TouchableOpacity, StyleSheet, Modal } from 'react-native';
-import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import Modal from 'react-native-modal';
 import Dialog, {DialogContent} from 'react-native-popup-dialog';
+import DatePicker from 'react-native-date-picker';
 
 import HomeScreen from './HomeScreen';
 import Task from  '../objects/Task';
@@ -22,7 +22,7 @@ class TaskScreen extends React.Component {
             headerRight:(
                 
                     <TouchableOpacity onPress={() =>navigation.navigate("HomeScreen",{
-                        newTask: new Task( navigation.getParam('title'), navigation.getParam('description'), new Date(), navigation.getParam('amount') )})} >
+                        newTask: new Task( navigation.getParam('title'), navigation.getParam('description'), navigation.getParam('dueDate'), navigation.getParam('amount') )})} >
                         <Icon name='check' size={30} />
                         {/* <Text>+</Text> */}
                     </TouchableOpacity>
@@ -49,13 +49,7 @@ class TaskScreen extends React.Component {
         newTask.submittedDate = new Date();
         newTask.amount = parseInt(this.state.amount, 10);
         console.log(newTask.amount);
-        this.setState({
-            title: '',
-            description: '',
-            dueDate: new Date(),
-            amount: '',
-            submittedDate: new Date(),
-        });
+        
         // this.props.navigation.setParams({newTask: undefined});
         this.props.navigation.navigate('HomeScreen', {newTask: newTask});
     }
@@ -68,6 +62,10 @@ class TaskScreen extends React.Component {
     processDescription(description){
         this.setState({description: description});
         this.props.navigation.setParams({description: description});
+    }
+    processDueDate(dueDate){
+        this.setState({dueDate: dueDate});
+        this.props.navigation.setParams({dueDate: dueDate});
     }
     processAmount(amount){
         this.setState({amount: amount});
@@ -103,7 +101,11 @@ class TaskScreen extends React.Component {
                             {/* <DatePicker 
                                 date={this.state.dueDate}    
                                 onDateChange={dueDate => this.setState({dueDate})}
-                            /> */}                            
+                            />  */}
+                            <DatePicker 
+                                date={this.state.dueDate}
+                                onDateChange={(dueDate) => this.processDueDate(dueDate)}
+                            />
                         </View>
                     </View> 
 

@@ -22,6 +22,7 @@ import { createBottomTabNavigator, createAppContainer, createStackNavigator } fr
 import HomeScreen from './screens/HomeScreen';
 import TaskScreen from './screens/TaskScreen';
 import DisplayCardScreen from './screens/DisplayCardScreen';
+import EntryScreen from './screens/EntryScreen';
 
 const App = () => {
   return (
@@ -32,8 +33,10 @@ const App = () => {
 const TabNavigator = createBottomTabNavigator({
   Home:{
     screen: createStackNavigator({
+      EntryScreen: {screen: EntryScreen },
       HomeScreen: { screen: HomeScreen },
       DisplayCardScreen: { screen: DisplayCardScreen },
+      
     })
   },
   Task: {

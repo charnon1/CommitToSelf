@@ -37,12 +37,11 @@ class HomeScreen extends React.Component {
         //passses when there is a new task from task screen
         if(nextProps.navigation.getParam("newTask") != undefined){
             let newTask = nextProps.navigation.getParam("newTask");
+            console.log("dueDate: " + newTask.dueDate);
                 return{
                     newTask: newTask,
                     allTasks: [...prevState.allTasks, newTask],
-    
-                }
-                
+                }     
         }
             
         //passes when there is a task to be removed from display screen
